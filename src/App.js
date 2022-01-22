@@ -4,21 +4,19 @@ import './App.css';
 import Hompage from './hompage/hompage';
 import { Route, Routes, Link } from 'react-router-dom';
 import ShopPage from './hompage/ShopPage/shoppage';
-
-const HatPage = () => {
-	return (
-		<div>
-			<h1>Hat Page</h1>
-		</div>
-	);
-};
+import Header from './components/header/header';
+import AccountPage from './hompage/accountPage/accountPage';
 
 function App() {
 	return (
-		<Routes>
-			<Route path="/" element={<Hompage />} />
-			<Route path="/shop" element={<ShopPage />} />
-		</Routes>
+		<div>
+			<Header />
+			<Routes>
+				<Route path="/" element={<Hompage />} />
+				<Route path="/shop" element={<ShopPage />} />
+				<Route path="/account" element={<AccountPage />} />
+			</Routes>
+		</div>
 	);
 }
 
