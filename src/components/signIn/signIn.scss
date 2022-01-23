@@ -1,3 +1,9 @@
 .sign-in {
-	width: 35%;
+	width: 380px;
+	& .btns {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
 }

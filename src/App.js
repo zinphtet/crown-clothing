@@ -6,18 +6,37 @@ import { Route, Routes, Link } from 'react-router-dom';
 import ShopPage from './hompage/ShopPage/shoppage';
 import Header from './components/header/header';
 import AccountPage from './hompage/accountPage/accountPage';
+import { auth } from '../src/firebase/firebase';
+class App extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			currentUser: null,
+		};
+	}
+	unsubscribeFromAuth = null;
 
-function App() {
-	return (
-		<div>
-			<Header />
-			<Routes>
-				<Route path="/" element={<Hompage />} />
-				<Route path="/shop" element={<ShopPage />} />
-				<Route path="/account" element={<AccountPage />} />
-			</Routes>
-		</div>
-	);
+	componentDidMount() {
+		this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
+			this.setState({ currentUser: user });
+			console.log(user);
+		});
+	}
+	componentWillUnmount() {
+		this.unsubscribeFromAuth();
+	}
+	render() {
+		return (
+			<div>
+				<Header currentUser={this.state.currentUser} />
+				<Routes>
+					<Route path="/" element={<Hompage />} />
+					<Route path="/shop" element={<ShopPage />} />
+					<Route path="/account" element={<AccountPage />} />
+				</Routes>
+			</div>
+		);
+	}
 }
 
 export default App;
