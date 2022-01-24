@@ -6,7 +6,8 @@ import { Route, Routes, Link } from 'react-router-dom';
 import ShopPage from './hompage/ShopPage/shoppage';
 import Header from './components/header/header';
 import AccountPage from './hompage/accountPage/accountPage';
-import { auth } from '../src/firebase/firebase';
+import { auth, createUserProfileDoc } from '../src/firebase/firebase';
+import { isFocusable } from '@testing-library/user-event/dist/utils';
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -17,9 +18,25 @@ class App extends React.Component {
 	unsubscribeFromAuth = null;
 
 	componentDidMount() {
-		this.unsubscribeFromAuth = auth.onAuthStateChanged((user) => {
-			this.setState({ currentUser: user });
-			console.log(user);
+		this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+			if (userAuth) {
+				const userRef = await createUserProfileDoc(userAuth);
+				userRef.onSnapshot((snapShot) => {
+					this.setState({
+						currentUser: {
+							id: snapShot.id,
+
+							...snapShot.data(),
+						},
+					});
+				});
+			} else {
+				this.setState({
+					currentUser: userAuth,
+				});
+			}
+
+			// console.log(user.uid);
 		});
 	}
 	componentWillUnmount() {

@@ -1,10 +1,12 @@
 import React from "react";
 import './accountPage.scss'
 
+import SignUp from "../../components/signUp/signUp";
 import SignIn from "../../components/signIn/signIn";
 const AccountPage = ()=>(
-    <div className="sign-in-and-sign-out">
+    <div className="account-page">
            <SignIn />
+           <SignUp/>
     </div>
 )
 
