@@ -7,7 +7,7 @@ import ShopPage from './hompage/ShopPage/shoppage';
 import Header from './components/header/header';
 import AccountPage from './hompage/accountPage/accountPage';
 import { auth, createUserProfileDoc } from '../src/firebase/firebase';
-import { isFocusable } from '@testing-library/user-event/dist/utils';
+
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -22,13 +22,16 @@ class App extends React.Component {
 			if (userAuth) {
 				const userRef = await createUserProfileDoc(userAuth);
 				userRef.onSnapshot((snapShot) => {
-					this.setState({
-						currentUser: {
-							id: snapShot.id,
+					this.setState(
+						{
+							currentUser: {
+								id: snapShot.id,
 
-							...snapShot.data(),
+								...snapShot.data(),
+							},
 						},
-					});
+						() => console.log('Current User : ', this.state)
+					);
 				});
 			} else {
 				this.setState({
