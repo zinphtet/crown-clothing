@@ -5,10 +5,11 @@ import {Link} from 'react-router-dom'
 import {ReactComponent as Logo} from '../../assets/logo.svg'
 import { auth } from "../../firebase/firebase";
 import { connect } from "react-redux";
+import CartIcon from "../cartIcon/CartIcon";
+import CartDropdown from "../cartDropdown/CartDropdown";
 
 const Header =({ userNow})=>{
-  // const currentUser = user
-  // console.log(currentUser)
+ 
   return(
   
     <div className="header">
@@ -28,7 +29,9 @@ const Header =({ userNow})=>{
               :
               (<Link className="option" to='/account'>Sign In</Link>)
             }
+             <CartIcon/>
         </div>
+       <CartDropdown/>
     </div>
 )
 }

@@ -24,9 +24,3 @@ const AccountPage = ()=>{
 export default AccountPage;
 
 
-// const AccountPage = ()=>(
-//     <div className="account-page">
-//            <SignIn />
-//            <SignUp/>
-//     </div>
-// )
