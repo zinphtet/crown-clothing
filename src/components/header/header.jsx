@@ -7,6 +7,8 @@ import { auth } from "../../firebase/firebase";
 import { connect } from "react-redux";
 import CartIcon from "../cartIcon/CartIcon";
 import CartDropdown from "../cartDropdown/CartDropdown";
+import { selectUserState } from "../Reducer/user/userSelector";
+import { createStructuredSelector } from "reselect";
 
 const Header =({ userNow})=>{
  
@@ -37,8 +39,8 @@ const Header =({ userNow})=>{
 }
 
 
-const mapStaeToProps = state =>({
-    userNow : state.user.currentUser,
+const mapStaeToProps = createStructuredSelector({
+    userNow : selectUserState,
   });  
 
 export default connect(mapStaeToProps)(Header);

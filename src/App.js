@@ -13,7 +13,6 @@ class App extends React.Component {
 	unsubscribeFromAuth = null;
 
 	componentDidMount() {
-		console.log(this.props.userNow);
 		this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
 			if (userAuth) {
 				const userRef = await createUserProfileDoc(userAuth);
@@ -39,12 +38,6 @@ class App extends React.Component {
 					<Route path="/" element={<Hompage />} />
 					<Route path="/shop" element={<ShopPage />} />
 					<Route path="/account" element={<AccountPage />} />
-					{/* <Route
-						path="/account"
-						render={() =>
-							this.props.userNow ? <Navigate replace to="/" /> : <AccountPage />
-						}
-					/> */}
 				</Routes>
 			</div>
 		);
@@ -53,7 +46,6 @@ class App extends React.Component {
 const mapStateToProps = ({ user }) => ({
 	userNow: user.currentUser,
 });
-//  console.log(user.currentUser);
 
 const mapDispatchToProps = (dispatch) => ({
 	dispatchUser: (user) => dispatch(setCurrentUser(user)),
