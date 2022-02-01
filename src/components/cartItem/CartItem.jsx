@@ -1,9 +1,9 @@
 import React from "react";
 import './CartItem.scss'
 
-const CartItem = (item)=>{
-    console.log(item)
-    const {name , imageUrl , price ,quantity} = item.item;
+const CartItem = ({item})=>{
+  
+    const {name , imageUrl , price ,quantity} = item;
     return (
         <div className="cart-item">
             <img src={imageUrl} alt="cart item img" />

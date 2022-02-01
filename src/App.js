@@ -8,6 +8,7 @@ import AccountPage from './hompage/accountPage/accountPage';
 import { auth, createUserProfileDoc } from '../src/firebase/firebase';
 import { setCurrentUser } from './components/Reducer/user/userAction';
 import { connect } from 'react-redux';
+import CheckoutPage from './hompage/checkoutPage/CheckoutPage';
 
 class App extends React.Component {
 	unsubscribeFromAuth = null;
@@ -38,6 +39,7 @@ class App extends React.Component {
 					<Route path="/" element={<Hompage />} />
 					<Route path="/shop" element={<ShopPage />} />
 					<Route path="/account" element={<AccountPage />} />
+					<Route path="/checkout" element={<CheckoutPage />} />
 				</Routes>
 			</div>
 		);
