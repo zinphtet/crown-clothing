@@ -9,6 +9,7 @@ import { auth, createUserProfileDoc } from '../src/firebase/firebase';
 import { setCurrentUser } from './components/Reducer/user/userAction';
 import { connect } from 'react-redux';
 import CheckoutPage from './hompage/checkoutPage/CheckoutPage';
+import Collection from './components/collection/collection';
 
 class App extends React.Component {
 	unsubscribeFromAuth = null;
@@ -37,9 +38,14 @@ class App extends React.Component {
 				<Header />
 				<Routes>
 					<Route path="/" element={<Hompage />} />
-					<Route path="/shop" element={<ShopPage />} />
+					<Route path="/shop" element={<ShopPage />}></Route>
+					<Route path="/shop/:colRouteName" element={<Collection />} />
 					<Route path="/account" element={<AccountPage />} />
 					<Route path="/checkout" element={<CheckoutPage />} />
+					<Route
+						path="*"
+						element={<h3>Nothing in this place , wrong directory</h3>}
+					/>
 				</Routes>
 			</div>
 		);

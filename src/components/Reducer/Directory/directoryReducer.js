@@ -5,21 +5,21 @@ const INTIAL_STATE = {
 			title: 'hats',
 			imgUrl:
 				'https://images.pexels.com/photos/185765/pexels-photo-185765.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-			linkUrl: 'hats',
+			linkUrl: 'shop/hats',
 		},
 		{
 			id: 2,
 			title: 'jackets',
 			imgUrl:
 				'https://images.pexels.com/photos/826380/pexels-photo-826380.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-			linkUrl: 'jackets',
+			linkUrl: 'shop/jackets',
 		},
 		{
 			id: 3,
 			title: 'sneakers',
 			imgUrl:
 				'https://images.pexels.com/photos/6776564/pexels-photo-6776564.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
-			linkUrl: 'sneakers',
+			linkUrl: 'shop/sneakers',
 		},
 		{
 			id: 4,
@@ -27,7 +27,7 @@ const INTIAL_STATE = {
 			imgUrl:
 				'https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
 			size: 'large',
-			linkUrl: 'womens',
+			linkUrl: 'shop/womens',
 		},
 		{
 			id: 5,
@@ -35,7 +35,7 @@ const INTIAL_STATE = {
 			imgUrl:
 				'https://images.pexels.com/photos/1194412/pexels-photo-1194412.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
 			size: 'large',
-			linkUrl: 'mens',
+			linkUrl: 'shop/mens',
 		},
 	],
 };
