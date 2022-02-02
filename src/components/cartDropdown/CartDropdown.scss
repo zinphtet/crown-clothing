@@ -24,4 +24,7 @@
 	&.cart-display {
 		display: none;
 	}
+	& .empty-cart {
+		margin: 2rem auto;
+	}
 }

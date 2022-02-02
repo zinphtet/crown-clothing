@@ -11,14 +11,20 @@ import setCartState from "../Reducer/Cart/CartAction";
 
 const CartDropdown = ({hidden,cartItems,dispatch})=>{
     const navigate = useNavigate()
-   
+
     return (
         <div className={`cart-dropdown ${hidden ? 'cart-display': ''}`}>
-            <div className="cart-items">
-                {
-                    cartItems.map(item => <CartItem key={item.id} item={item}  />)
-                }
+
+          {
+              cartItems.length===0 ? (<div className="empty-cart">Empty Cart</div>):
+              <div className="cart-items">
+              {
+                cartItems.map(item => <CartItem key={item.id} item={item}  />)
+             }
             </div>
+          }
+
+             
             <CustomButton onClick={()=>{
                 navigate('/checkout')
                 dispatch(setCartState())
