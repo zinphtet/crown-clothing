@@ -6,6 +6,7 @@ import { selectCartItems } from "../../components/Reducer/Cart/CartSelector";
 import CheckoutItem from "../../components/checkoutItem/CheckoutItem";
 import { connect } from "react-redux";
 import { selectTotalPrice } from "../../components/Reducer/Cart/CartSelector";
+import CheckOutButton from "../../components/stripe/stripePayment";
 
 const CheckoutPage = ({checkoutItems,totalPrice })=>{
     return (
@@ -32,6 +33,14 @@ const CheckoutPage = ({checkoutItems,totalPrice })=>{
              }
              <div className="total">
                  <span>Total : ${totalPrice}</span>
+             </div>
+             <CheckOutButton price={totalPrice} />
+
+             <div className="payment-card">
+                 <h1>* Please use the following test card for payments * 
+                     <br/>
+                     4242424242424242  Exp - 01/25 : CVC - 123 
+                 </h1>
              </div>
          </div>
     )
