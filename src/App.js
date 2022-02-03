@@ -44,7 +44,7 @@ class App extends React.Component {
 					<Route path="/checkout" element={<CheckoutPage />} />
 					<Route
 						path="*"
-						element={<h3>Nothing in this place , wrong directory</h3>}
+						element={<h3>Comming Soon .... </h3>}
 					/>
 				</Routes>
 			</div>

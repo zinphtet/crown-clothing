@@ -1,6 +1,5 @@
 import React from 'react';
 import StripeCheckout from 'react-stripe-checkout';
-import { ReactComponent as Logo } from '../../assets/logo.svg';
 
 const CheckOutButton = ({ price }) => {
 	const payToStripe = price * 100;
