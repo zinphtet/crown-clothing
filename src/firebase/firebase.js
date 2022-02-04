@@ -23,13 +23,9 @@ export const signInWithGoogle = () => auth.signInWithPopup(provider);
 export const createUserProfileDoc = async (userAuth, additionalData) => {
 	if (!userAuth) return;
 
-	var userRef = db.collection('users').doc(`${userAuth.uid}`);
+	const userRef = db.collection('users').doc(`${userAuth.uid}`);
 
 	const snapShot = await userRef.get();
-
-	// console.log(snapShot);
-	// console.log(snapShot.exists);
-
 	if (!snapShot.exists) {
 		const { displayName, email } = userAuth;
 		const createdAt = new Date();
@@ -45,6 +41,30 @@ export const createUserProfileDoc = async (userAuth, additionalData) => {
 		}
 	}
 	return userRef;
+};
+
+export const convertCollectionSnapshotToMap = (collections) => {
+	const transformedCollection = collections.docs.map((collection) => {
+		const { title, items } = collection.data();
+
+		return {
+			id: collection.id,
+			routeName: encodeURI(title.toLowerCase()),
+			title,
+			items,
+		};
+	});
+	return transformedCollection;
+};
+
+export const addCollectionAndDocument = async (collectionKey, ObjArr) => {
+	const collectionRef = db.collection(collectionKey);
+	const batch = db.batch();
+	ObjArr.forEach((obj) => {
+		const newDocRef = collectionRef.doc();
+		batch.set(newDocRef, obj);
+	});
+	return await batch.commit();
 };
 
 export default firebase;

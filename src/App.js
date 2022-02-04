@@ -10,6 +10,10 @@ import { setCurrentUser } from './components/Reducer/user/userAction';
 import { connect } from 'react-redux';
 import CheckoutPage from './hompage/checkoutPage/CheckoutPage';
 import Collection from './components/collection/collection';
+import { selectUserState } from './components/Reducer/user/userSelector';
+import { createStructuredSelector } from 'reselect';
+// import { selectShopItems } from './components/Reducer/shop/shopSelector';
+// import { addCollectionAndDocument } from './firebase/firebase';
 
 class App extends React.Component {
 	unsubscribeFromAuth = null;
@@ -24,9 +28,13 @@ class App extends React.Component {
 						...snapShot.data(),
 					});
 				});
-			} else {
-				this.props.dispatchUser(userAuth);
 			}
+			this.props.dispatchUser(userAuth);
+			// console.log(this.props.allCollections);
+			// addCollectionAndDocument(
+			// 	'collection',
+			// 	this.props.allCollections.map(({ title, items }) => ({ title, items }))
+			// );
 		});
 	}
 	componentWillUnmount() {
@@ -42,17 +50,15 @@ class App extends React.Component {
 					<Route path="/shop/:colRouteName" element={<Collection />} />
 					<Route path="/account" element={<AccountPage />} />
 					<Route path="/checkout" element={<CheckoutPage />} />
-					<Route
-						path="*"
-						element={<h3>Comming Soon .... </h3>}
-					/>
+					<Route path="*" element={<h3>Comming Soon .... </h3>} />
 				</Routes>
 			</div>
 		);
 	}
 }
-const mapStateToProps = ({ user }) => ({
-	userNow: user.currentUser,
+const mapStateToProps = createStructuredSelector({
+	userNow: selectUserState,
+	// allCollections: selectShopItems,
 });
 
 const mapDispatchToProps = (dispatch) => ({
