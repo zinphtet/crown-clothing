@@ -5,15 +5,15 @@ import {connect} from 'react-redux'
 import withSpinner from "../../components/hocForSpinner/withSpinner";
 import { createStructuredSelector } from "reselect";
 import { selectIsFetching } from "../../components/Reducer/shop/shopSelector";
-import { fetchStartAsync } from "../../components/Reducer/shop/shopAction";
+import {fetchStart } from "../../components/Reducer/shop/shopAction";
 
 const ShopPageWithSpinner  = withSpinner(CollectionOverview)
 
 class ShopPage extends React.Component {
   
   componentDidMount(){
-    const {fetchStartAsync} = this.props
-      fetchStartAsync();
+    const {fetchStart} = this.props
+    fetchStart();
   }
         
   render(){
@@ -31,7 +31,7 @@ class ShopPage extends React.Component {
   })
   const mapDispatchToProps = dispatch =>{
     return{
-      fetchStartAsync : collectionMap=>dispatch(fetchStartAsync(collectionMap))
+      fetchStart : collectionMap=>dispatch(fetchStart(collectionMap))
     }
   }
 

@@ -6,13 +6,13 @@ import { connect } from "react-redux";
 import { selectShopItems } from "../Reducer/shop/shopSelector";
 import { createStructuredSelector } from "reselect";
 import CollectionItem from "../collectionItem/collectionItem";
-import { fetchStartAsync } from "../Reducer/shop/shopAction";
+import { fetchStart  } from "../Reducer/shop/shopAction";
  import { useEffect} from "react";
 
-const Collection = ({allCollection,fetchStartAsync})=>{
+const Collection = ({allCollection,fetchStart })=>{
     useEffect(() => {
         // code to run on component mount
-        fetchStartAsync()
+        fetchStart ()
       }, [])
   
     const {colRouteName} = useParams()
@@ -43,7 +43,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = dispatch =>{
     return{
-        fetchStartAsync : collectionMap=>dispatch(fetchStartAsync(collectionMap))
+        fetchStart : collectionMap=>dispatch(fetchStart (collectionMap))
     }
   }
 
