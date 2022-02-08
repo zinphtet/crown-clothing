@@ -5,6 +5,8 @@ import {
 	signInFailure,
 	signOutSuccess,
 	signOutFailure,
+	signUpSuccess,
+	signUpFailure,
 } from './userAction';
 import {
 	googleProvider,
@@ -55,6 +57,23 @@ function* isUserSignOut() {
 		yield put(signOutFailure(error));
 	}
 }
+function* signUp({ payload: { email, password, displayName } }) {
+	try {
+		const { user } = yield auth.createUserWithEmailAndPassword(email, password);
+		yield put(signUpSuccess({ user, additionalData: { displayName } }));
+	} catch (error) {
+		yield put(signUpFailure(error));
+	}
+}
+function* signInAfterSignUp({ payload: { user, additionalData } }) {
+	try {
+		const userRef = yield call(createUserProfileDoc, user, additionalData);
+		const snapShot = yield userRef.get();
+		yield put(signInSuccess({ id: snapShot.id, ...snapShot.data() }));
+	} catch (error) {
+		yield put(signInFailure(error));
+	}
+}
 
 function* googleSignInStart() {
 	yield takeLatest(userActionTypes.GOOGLE_SIGNIN_START, signInWithGoogle);
@@ -70,6 +89,12 @@ function* checkUserSession() {
 function* signOutStart() {
 	yield takeLatest(userActionTypes.SIGN_OUT_START, isUserSignOut);
 }
+function* signUpStart() {
+	yield takeLatest(userActionTypes.SINGN_UP_START, signUp);
+}
+function* signUpSuccesss() {
+	yield takeLatest(userActionTypes.SIGN_UP_SUCCESS, signInAfterSignUp);
+}
 
 function* userSaga() {
 	yield all([
@@ -77,6 +102,8 @@ function* userSaga() {
 		call(emaiSignInStart),
 		call(checkUserSession),
 		call(signOutStart),
+		call(signUpStart),
+		call(signUpSuccesss),
 	]);
 }
 
