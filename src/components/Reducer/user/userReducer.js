@@ -12,8 +12,13 @@ const userReducer = (prevState = INTIAL_STATE, action) => {
 				currentUser: action.payload,
 				error: null,
 			};
-
+		case userActionTypes.SIGN_OUT_SUCCESS:
+			return {
+				...prevState,
+				currentUser: null,
+			};
 		case userActionTypes.SIGNIN_FAILURE:
+		case userActionTypes.SIGN_OUT_FAILURE:
 			return {
 				...prevState,
 				error: action.payload,

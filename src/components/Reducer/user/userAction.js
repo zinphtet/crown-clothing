@@ -31,16 +31,26 @@ export const emailSignInStart = (emailAndPassword) => {
 		payload: emailAndPassword,
 	};
 };
-// export const emailSignInSuccess = (user) => {
-// 	return {
-// 		type: userActionTypes.EMAIL_SIGNIN_SUCCESS,
-// 		payload: user,
-// 	};
-// };
+export const checkUserSession = () => {
+	return {
+		type: userActionTypes.CHECK_USER_SESSION,
+	};
+};
 
-// export const emailSignInFailure = (error) => {
-// 	return {
-// 		type: userActionTypes.EMAIL_SIGNIN_FAILURE,
-// 		payload: error,
-// 	};
-// };
+export const signOutStart = () => {
+	return {
+		type: userActionTypes.SIGN_OUT_START,
+	};
+};
+
+export const signOutSuccess = () => {
+	return {
+		type: userActionTypes.SIGN_OUT_SUCCESS,
+	};
+};
+export const signOutFailure = (error) => {
+	return {
+		type: userActionTypes.SIGN_OUT_FAILURE,
+		payload: error,
+	};
+};

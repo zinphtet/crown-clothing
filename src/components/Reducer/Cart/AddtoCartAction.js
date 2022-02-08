@@ -1,6 +1,7 @@
+import cartActionTypes from './carActionTypes';
 const addToCart = (itemObj) => {
 	return {
-		type: 'ADD_TO_CART',
+		type: cartActionTypes.ADD_TO_CART,
 		payload: itemObj,
 	};
 };

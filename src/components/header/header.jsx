@@ -9,9 +9,11 @@ import CartIcon from "../cartIcon/CartIcon";
 import CartDropdown from "../cartDropdown/CartDropdown";
 import { selectUserState } from "../Reducer/user/userSelector";
 import { createStructuredSelector } from "reselect";
+import { signOutStart } from "../Reducer/user/userAction";
 
-const Header =({ userNow})=>{
- 
+
+const Header =({ userNow, signOutStart})=>{
+  
   return(
   
     <div className="header">
@@ -27,7 +29,7 @@ const Header =({ userNow})=>{
             </Link>
             {
            userNow ? 
-              (<div className="option" onClick={()=>auth.signOut()}>Sign Out</div>)
+              (<div className="option" onClick={signOutStart}>Sign Out</div>)
               :
               (<Link className="option" to='/account'>Sign In</Link>)
             }
@@ -42,5 +44,9 @@ const Header =({ userNow})=>{
 const mapStaeToProps = createStructuredSelector({
     userNow : selectUserState,
   });  
-
-export default connect(mapStaeToProps)(Header);
+const mapDispatchToProps = dispatch =>{
+  return{
+    signOutStart:()=>dispatch(signOutStart())
+  }
+}
+export default connect(mapStaeToProps,mapDispatchToProps)(Header);
