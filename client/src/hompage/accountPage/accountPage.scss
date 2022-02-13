@@ -5,3 +5,10 @@
 	margin: 20px auto;
 	justify-content: space-between;
 }
+
+@media screen and (max-width: 800px) {
+	.account-page {
+		width: 90vw;
+		flex-direction: column;
+	}
+}

@@ -17,3 +17,43 @@
 		}
 	}
 }
+
+@media screen and (max-width: 950px) {
+	.collection-page {
+		.items {
+			grid-template-columns: 1fr 1fr 1fr;
+			align-items: center;
+			justify-content: center;
+			justify-items: center;
+		}
+	}
+}
+@media screen and (max-width: 770px) {
+	.collection-page {
+		.items {
+			grid-template-columns: 1fr 1fr;
+
+			& .collection-item {
+				width: 40vw;
+				.image {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 524px) {
+	.collection-page {
+		.items {
+			grid-template-columns: 1fr;
+
+			& .collection-item {
+				width: 80vw;
+				.image {
+					width: 100%;
+				}
+			}
+		}
+	}
+}

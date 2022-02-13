@@ -14,3 +14,48 @@
 		justify-content: space-between;
 	}
 }
+
+@media screen and (max-width: 1000px) {
+	.collection-preview {
+		.preview {
+			display: grid;
+			grid-gap: 1rem;
+			grid-template-columns: 1fr 1fr 1fr;
+
+			justify-content: space-between;
+			align-items: center;
+			justify-items: center;
+			.collection-item {
+				width: 25vw;
+
+				.image {
+					width: 100%;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 770px) {
+	.collection-preview {
+		.preview {
+			grid-template-columns: 1fr 1fr;
+
+			.collection-item {
+				width: 45vw;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.collection-preview {
+		.preview {
+			grid-template-columns: 1fr;
+
+			.collection-item {
+				width: 90vw;
+			}
+		}
+	}
+}
